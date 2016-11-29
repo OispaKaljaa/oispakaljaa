@@ -1,4 +1,4 @@
-package karhu.repository;
+package fi.oispakaljaa.karhu.repository;
 
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;

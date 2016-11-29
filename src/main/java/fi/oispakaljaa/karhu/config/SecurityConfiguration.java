@@ -1,4 +1,4 @@
-package karhu.config;
+package fi.oispakaljaa.karhu.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

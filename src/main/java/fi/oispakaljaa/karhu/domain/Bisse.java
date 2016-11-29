@@ -1,4 +1,4 @@
-package karhu.domain;
+package fi.oispakaljaa.karhu.domain;
 
 import javax.persistence.Entity;
 
