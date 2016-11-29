@@ -17,6 +17,8 @@ public class Drink extends AbstractPersistable<Long> {
     private String drinkType; // BEER / CIDER
 
     private Bar bar;
+    
+    private Integer price;
 
     public String getName() {
         return name;
@@ -41,4 +43,14 @@ public class Drink extends AbstractPersistable<Long> {
     public void setDrinkType(String drinkType) {
         this.drinkType = drinkType;
     }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+    
+    
 }
