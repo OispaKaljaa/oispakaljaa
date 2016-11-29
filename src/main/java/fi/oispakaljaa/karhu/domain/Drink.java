@@ -1,13 +1,11 @@
 package fi.oispakaljaa.karhu.domain;
 
+import java.util.Date;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
-
-/**
- * Created by julkku on 11/29/16.
- */
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Drink extends AbstractPersistable<Long> {
@@ -17,8 +15,14 @@ public class Drink extends AbstractPersistable<Long> {
     private String drinkType; // BEER / CIDER
 
     private Bar bar;
-    
+
     private Integer price;
+
+    @Temporal(TemporalType.DATE)
+    private Date added;
+
+    @Temporal(TemporalType.DATE)
+    private Date lastEdit;
 
     public String getName() {
         return name;
@@ -51,6 +55,21 @@ public class Drink extends AbstractPersistable<Long> {
     public Integer getPrice() {
         return price;
     }
-    
-    
+
+    public void setAdded(Date added) {
+        this.added = added;
+    }
+
+    public void setLastEdit(Date lastEdit) {
+        this.lastEdit = lastEdit;
+    }
+
+    public Date getAdded() {
+        return added;
+    }
+
+    public Date getLastEdit() {
+        return lastEdit;
+    }
+
 }
