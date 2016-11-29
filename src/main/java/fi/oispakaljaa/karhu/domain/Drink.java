@@ -26,7 +26,6 @@ public class Drink extends AbstractPersistable<Long> {
         this.name = name;
     }
 
-
     public Bar getBar() {
         return bar;
     }

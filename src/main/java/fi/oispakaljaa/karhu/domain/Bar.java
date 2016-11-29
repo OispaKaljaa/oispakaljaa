@@ -14,7 +14,9 @@ public class Bar extends AbstractPersistable<Long> {
 
     private String name;
 
-//    private Location location; //ONKS TÄÄ SIT OIKEIN
+    private double longitude;
+
+    private double latitude;
 
     private Drink cheapestBisse;
 
@@ -29,15 +31,21 @@ public class Bar extends AbstractPersistable<Long> {
         this.name = name;
     }
 
-/*
-    public Location getLocation() {
-        return location;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
-*/
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
 
     public Drink getCheapestBisse() {
         return cheapestBisse;
