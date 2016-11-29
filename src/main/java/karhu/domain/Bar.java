@@ -1,10 +1,9 @@
 package karhu.domain;
 
-import org.springframework.beans.factory.parsing.Location;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
@@ -15,12 +14,12 @@ public class Bar extends AbstractPersistable<Long> {
 
     private String name;
 
-    private Location location; //ONKS TÄÄ SIT OIKEIN
+//    private Location location; //ONKS TÄÄ SIT OIKEIN
 
-    private BarToDrinkData halvinKalja;
+    private Drink cheapestBisse;
 
-    @ManyToOne
-    private List<BarToDrinkData> drinkData;
+    @OneToMany(mappedBy = "bar")
+    private List<Drink> drinks;
 
     public String getName() {
         return name;
@@ -30,6 +29,7 @@ public class Bar extends AbstractPersistable<Long> {
         this.name = name;
     }
 
+/*
     public Location getLocation() {
         return location;
     }
@@ -37,20 +37,21 @@ public class Bar extends AbstractPersistable<Long> {
     public void setLocation(Location location) {
         this.location = location;
     }
+*/
 
-    public BarToDrinkData getHalvinKalja() {
-        return halvinKalja;
+    public Drink getCheapestBisse() {
+        return cheapestBisse;
     }
 
-    public void setHalvinKalja(BarToDrinkData halvinKalja) {
-        this.halvinKalja = halvinKalja;
+    public void setCheapestBisse(Drink cheapestBisse) {
+        this.cheapestBisse = cheapestBisse;
     }
 
-    public List<BarToDrinkData> getDrinkData() {
-        return drinkData;
+    public List<Drink> getDrinks() {
+        return drinks;
     }
 
-    public void setDrinkData(List<BarToDrinkData> drinkData) {
-        this.drinkData = drinkData;
+    public void setDrinks(List<Drink> drinks) {
+        this.drinks = drinks;
     }
 }

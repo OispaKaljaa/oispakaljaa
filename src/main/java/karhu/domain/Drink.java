@@ -1,8 +1,8 @@
 package karhu.domain;
 
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.List;
 
 /**
  * Created by julkku on 11/29/16.
@@ -10,12 +10,13 @@ import java.util.List;
 
 
 @Entity
-public abstract class Drink {
+public class Drink extends AbstractPersistable<Long> {
 
-    private String name;
+    private String name; // KARJALA /
 
-    @OneToMany
-    private List<BarToDrinkData> barData;
+    private String drinkType; // BEER / CIDER
+
+    private Bar bar;
 
     public String getName() {
         return name;
@@ -25,11 +26,20 @@ public abstract class Drink {
         this.name = name;
     }
 
-    public List<BarToDrinkData> getBarData() {
-        return barData;
+
+    public Bar getBar() {
+        return bar;
     }
 
-    public void setBarData(List<BarToDrinkData> barData) {
-        this.barData = barData;
+    public void setBar(Bar bar) {
+        this.bar = bar;
+    }
+
+    public String getDrinkType() {
+        return drinkType;
+    }
+
+    public void setDrinkType(String drinkType) {
+        this.drinkType = drinkType;
     }
 }
