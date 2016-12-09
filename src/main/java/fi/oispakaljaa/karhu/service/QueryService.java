@@ -19,8 +19,12 @@ public class QueryService {
     @Autowired
     BarRepository barRepository;
 
+    @Autowired
+    GoogleAPIService googleAPIService;
+
     public List<Bar> recommendBars() {
         List<Bar> bars = barRepository.findAll();
+        googleAPIService.getDistance("60.171080599999996,24.949038599999998", "Kamppi.Helsinki");
         return bars.stream()
             .sorted(Comparator.comparing(b -> b.getCheapestBisse().getPrice()))
             .collect(Collectors.toList());
