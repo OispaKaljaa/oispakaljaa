@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/css.css" rel="stylesheet"/>
+</head>
+<body>
+<div th:fragment="header">
+    <div class="container">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+
+            <a class="navbar-brand" href="#">Beer</a>
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <a href="#" th:href="@{/}">Baars</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" th:href="@{/addbar}">Add a bar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js" th:if="false"></script>
+<!--<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js"-->
+<!--defer="defer" th:if="false"></script>-->
+<script src="js/bootstrap.min.js"></script>
+
+
+</html>
