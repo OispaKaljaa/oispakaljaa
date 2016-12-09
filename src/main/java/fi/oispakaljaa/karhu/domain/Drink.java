@@ -4,6 +4,7 @@ import java.util.Date;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -13,8 +14,6 @@ public class Drink extends AbstractPersistable<Long> {
     private String name; // KARJALA /
 
     private String drinkType; // BEER / CIDER
-
-    private Bar bar;
 
     private Integer price;
 
@@ -30,14 +29,6 @@ public class Drink extends AbstractPersistable<Long> {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Bar getBar() {
-        return bar;
-    }
-
-    public void setBar(Bar bar) {
-        this.bar = bar;
     }
 
     public String getDrinkType() {

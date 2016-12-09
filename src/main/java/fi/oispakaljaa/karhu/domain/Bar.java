@@ -4,6 +4,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 /**
@@ -18,10 +19,8 @@ public class Bar extends AbstractPersistable<Long> {
 
     private double latitude;
 
+    @OneToOne
     private Drink cheapestBisse;
-
-    @OneToMany(mappedBy = "bar")
-    private List<Drink> drinks;
 
     public String getName() {
         return name;
@@ -53,13 +52,5 @@ public class Bar extends AbstractPersistable<Long> {
 
     public void setCheapestBisse(Drink cheapestBisse) {
         this.cheapestBisse = cheapestBisse;
-    }
-
-    public List<Drink> getDrinks() {
-        return drinks;
-    }
-
-    public void setDrinks(List<Drink> drinks) {
-        this.drinks = drinks;
     }
 }
