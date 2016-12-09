@@ -10,4 +10,10 @@ public class DefaultController {
     public String handleDefault() {
         return "index";
     }
+
+    @RequestMapping("/addbar")
+    public String addBarPage() {
+        return "addbar";
+    }
+
 }
