@@ -4,6 +4,7 @@ import java.util.Date;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -11,11 +12,14 @@ import javax.persistence.TemporalType;
 @Entity
 public class Drink extends AbstractPersistable<Long> {
 
-    private String name; // KARJALA /
+    private String name;
 
-    private String drinkType; // BEER / CIDER
+    private String drinkType;
 
     private Integer price;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Bar bar;
 
     @Temporal(TemporalType.DATE)
     private Date added;
@@ -37,6 +41,14 @@ public class Drink extends AbstractPersistable<Long> {
 
     public void setDrinkType(String drinkType) {
         this.drinkType = drinkType;
+    }
+
+    public void setBar(Bar bar) {
+        this.bar = bar;
+    }
+
+    public Bar getBar() {
+        return bar;
     }
 
     public void setPrice(Integer price) {

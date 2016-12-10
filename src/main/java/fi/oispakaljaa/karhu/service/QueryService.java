@@ -2,6 +2,7 @@ package fi.oispakaljaa.karhu.service;
 
 import fi.oispakaljaa.karhu.domain.Bar;
 import fi.oispakaljaa.karhu.repository.BarRepository;
+import fi.oispakaljaa.karhu.repository.DrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,6 @@ import java.util.stream.Collectors;
 /**
  * Created by Hugo on 9.12.2016.
  */
-
 @Service
 public class QueryService {
 
@@ -20,13 +20,22 @@ public class QueryService {
     BarRepository barRepository;
 
     @Autowired
+    DrinkRepository drinkRepository;
+
+    @Autowired
     GoogleAPIService googleAPIService;
 
-    public List<Bar> recommendBars() {
+    /*  public List<Bar> recommendBars() {
         List<Bar> bars = barRepository.findAll();
         googleAPIService.getDistance("60.171080599999996,24.949038599999998", "Kamppi.Helsinki");
         return bars.stream()
             .sorted(Comparator.comparing(b -> b.getCheapestBisse().getPrice()))
             .collect(Collectors.toList());
+        
     }
+
+    Tää hajos.
+DrinkRepository järjestää juomat hinnan mukaan ja baarin saa sitä kautta:
+drinkRepository.orderByPrice(new Sort("price")).get(0).getBar() jne    
+     */
 }
