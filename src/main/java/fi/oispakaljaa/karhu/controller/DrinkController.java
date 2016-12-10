@@ -1,11 +1,14 @@
 package fi.oispakaljaa.karhu.controller;
 
+import fi.oispakaljaa.karhu.APItemplates.google.OispakaljaaTemplate;
 import fi.oispakaljaa.karhu.domain.Bar;
 import fi.oispakaljaa.karhu.domain.Drink;
 import fi.oispakaljaa.karhu.repository.BarRepository;
 import fi.oispakaljaa.karhu.repository.DrinkRepository;
-import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "bars/{barId}/drinks")
+@RequestMapping(value = "/api/bars/{barId}/drinks")
 public class DrinkController {
 
     @Autowired
@@ -23,29 +26,47 @@ public class DrinkController {
     BarRepository barRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Drink> listDrinksByBar(@PathVariable(value = "barId") Long id) {
-        return drinkRepository.findByBar(barRepository.findOne(id));
+    public ResponseEntity<OispakaljaaTemplate> listDrinksByBar(@PathVariable(value = "barId") Long id) {
+        Bar b = barRepository.findOne(id);
+        if (b == null)
+            return new ResponseEntity<>(new OispakaljaaTemplate("Error", "Bar not found", null), HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>(new OispakaljaaTemplate("OK", "", drinkRepository.findByBar(b)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Drink postDrink(@PathVariable("barId") Long id, @RequestBody Drink drink) {
-        Bar bar = barRepository.findOne(id);
-        drink.setBar(bar);
-        return drinkRepository.save(drink);
+    public ResponseEntity<OispakaljaaTemplate> postDrink(@PathVariable("barId") Long id, @RequestBody Drink drink) {
+        Bar b = barRepository.findOne(id);
+        if (b == null)
+            return new ResponseEntity<>(new OispakaljaaTemplate("Error", "Bar not found", null), HttpStatus.NOT_FOUND);
+
+        drink.setBar(b);
+        return new ResponseEntity<>(new OispakaljaaTemplate("OK", "", drinkRepository.save(drink)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{drinkId}", method = RequestMethod.GET)
-    public Drink getDrink(@PathVariable("drinkId") Long barId,
-            @PathVariable("drinkId") Long drinkId) {
-        return drinkRepository.findByBarAndId(barRepository.findOne(barId), drinkId);
+    public ResponseEntity<OispakaljaaTemplate> getDrink(@PathVariable("drinkId") Long barId,
+                                                        @PathVariable("drinkId") Long drinkId) {
+        Bar b = barRepository.findOne(barId);
+        if (b == null)
+            return new ResponseEntity<>(new OispakaljaaTemplate("Error", "Bar not found", null), HttpStatus.NOT_FOUND);
+
+        Drink d = drinkRepository.findByBarAndId(b, drinkId);
+        if (d == null)
+            return new ResponseEntity<>(new OispakaljaaTemplate("Error", "Drink not found", null), HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<OispakaljaaTemplate>(new OispakaljaaTemplate("OK", "", d), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{drinkId}", method = RequestMethod.DELETE)
-    public Drink deleteDrink(@PathVariable("barId") Long barId,
-            @PathVariable("drinkId") Long drinkId) {
+    public ResponseEntity<OispakaljaaTemplate> deleteDrink(@PathVariable("barId") Long barId,
+                                                           @PathVariable("drinkId") Long drinkId) {
         Drink drink = drinkRepository.findOne(drinkId);
+        if (drink == null) {
+            return new ResponseEntity<>(new OispakaljaaTemplate("Error", "Drink not found", null), HttpStatus.NOT_FOUND);
+        }
         drinkRepository.delete(drink);
-        return drink;
+        return new ResponseEntity<>(new OispakaljaaTemplate("OK", "", drink), HttpStatus.OK);
     }
 
 }

@@ -25,17 +25,14 @@ public class QueryService {
     @Autowired
     GoogleAPIService googleAPIService;
 
-    /*  public List<Bar> recommendBars() {
+      public List<Bar> recommendBars() {
         List<Bar> bars = barRepository.findAll();
         googleAPIService.getDistance("60.171080599999996,24.949038599999998", "Kamppi.Helsinki");
-        return bars.stream()
-            .sorted(Comparator.comparing(b -> b.getCheapestBisse().getPrice()))
-            .collect(Collectors.toList());
-        
-    }
+        return drinkRepository.findAll()
+                .stream()
+                .filter(d -> d.getDrinkType().equals("Beer"))
+                .map(d -> d.getBar())
+                .collect(Collectors.toList());
 
-    Tää hajos.
-DrinkRepository järjestää juomat hinnan mukaan ja baarin saa sitä kautta:
-drinkRepository.orderByPrice(new Sort("price")).get(0).getBar() jne    
-     */
+    }
 }

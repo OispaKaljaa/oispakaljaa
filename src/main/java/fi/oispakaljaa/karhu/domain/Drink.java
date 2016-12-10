@@ -1,6 +1,8 @@
 package fi.oispakaljaa.karhu.domain;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ public class Drink extends AbstractPersistable<Long> {
     private Integer price;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     private Bar bar;
 
     @Temporal(TemporalType.DATE)

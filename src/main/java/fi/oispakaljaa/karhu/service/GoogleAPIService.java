@@ -1,10 +1,8 @@
 package fi.oispakaljaa.karhu.service;
 
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import fi.oispakaljaa.karhu.APItemplates.GoogleDistanceMatrixTemplate;
+import fi.oispakaljaa.karhu.APItemplates.google.GoogleDistanceMatrixTemplate;
 
 /**
  * Created by Hugo on 9.12.2016.
