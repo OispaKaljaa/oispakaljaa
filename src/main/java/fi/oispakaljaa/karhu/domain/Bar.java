@@ -1,11 +1,7 @@
 package fi.oispakaljaa.karhu.domain;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.util.List;
 
 /**
  * Created by julkku on 11/29/16.
@@ -18,9 +14,6 @@ public class Bar extends AbstractPersistable<Long> {
     private double longitude;
 
     private double latitude;
-
-    @OneToOne
-    private Drink cheapestBisse;
 
     public String getName() {
         return name;
@@ -46,11 +39,4 @@ public class Bar extends AbstractPersistable<Long> {
         this.latitude = latitude;
     }
 
-    public Drink getCheapestBisse() {
-        return cheapestBisse;
-    }
-
-    public void setCheapestBisse(Drink cheapestBisse) {
-        this.cheapestBisse = cheapestBisse;
-    }
 }
