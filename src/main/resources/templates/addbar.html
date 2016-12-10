@@ -7,15 +7,35 @@
 </head>
 <body>
 
-<div class="container" th:include="fragment :: header" ></div>
+<div class="container" th:include="fragment :: header"></div>
 
 <div class="container">
     <h1>Add a bar: </h1>
+
+    <form class="form-group">
+
+        <div class="input-group">
+            <input class="form-control" type="number" placeholder="Price of beer"/>
+            <span class="input-group-addon">€</span>
+
+        </div>
+        <div class="input-group">
+            <input class="form-control" type="number" placeholder="5"/>
+            <span class="input-group-addon">dl</span>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit bar!</button>
+    </form>
 </div>
 
+<footer class="footer" th:include="fragment :: footer"></footer>
+
+
+
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" th:if="false"></script>
-<!--defer="defer" th:if="false"></script>-->
-<script src="js/bootstrap.min.js"></script>
+<script src="js/barRest.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>
