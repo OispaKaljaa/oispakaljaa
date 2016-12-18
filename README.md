@@ -5,8 +5,25 @@ https://github.com/OispaKaljaa/oispakaljaa
 
 http://oispaolutta.herokuapp.com
 
-### Rest
+### Rest API
 http://oispaolutta.herokuapp.com/api/
+
+http://oispaolutta.herokuapp.com/api/bars
+
+Key:
+name
+longitude
+latitude
+Address
+
+http://oispaolutta.herokuapp.com/api/bars/{barId}/drinks
+
+Key:
+name
+drinkType
+price
+volume
+alcoholPercentage
 
 ### Sovelluksen kuvaus
 
