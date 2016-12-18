@@ -1,7 +1,10 @@
 package fi.oispakaljaa.karhu.domain;
 
-import javax.persistence.Entity;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 public class Account extends AbstractPersistable<Long> {
@@ -9,6 +12,9 @@ public class Account extends AbstractPersistable<Long> {
     private String username;
     private String password;
     private String authority;
+
+    @ManyToMany
+    private List<Bar> favouriteBars;
 
     public String getUsername() {
         return username;

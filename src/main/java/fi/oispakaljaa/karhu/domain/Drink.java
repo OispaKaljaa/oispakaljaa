@@ -1,15 +1,10 @@
 package fi.oispakaljaa.karhu.domain;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Drink extends AbstractPersistable<Long> {
@@ -19,6 +14,10 @@ public class Drink extends AbstractPersistable<Long> {
     private String drinkType;
 
     private Integer price;
+
+    private Integer volume; //dl
+
+    private Integer alcoholPercentage; // 4,56 -> 456
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
@@ -78,4 +77,15 @@ public class Drink extends AbstractPersistable<Long> {
         return lastEdit;
     }
 
+    public Integer getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Integer volume) {
+        this.volume = volume;
+    }
+
+    public double getIntoxFactor() {
+        return ((double) alcoholPercentage * (double) volume * 0.1) / ((double) price * 100);
+    }
 }
