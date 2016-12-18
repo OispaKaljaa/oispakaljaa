@@ -10,19 +10,19 @@ http://oispaolutta.herokuapp.com/api/
 
 http://oispaolutta.herokuapp.com/api/bars
 
-Key:
-name
-longitude
-latitude
+<b>Key:</b><br>
+name<br>
+longitude<br>
+latitude<br>
 Address
 
 http://oispaolutta.herokuapp.com/api/bars/{barId}/drinks
 
-Key:
-name
-drinkType
-price
-volume
+<b>Key:</b><br>
+name<br>
+drinkType<br>
+price<br>
+volume<br>
 alcoholPercentage
 
 ### Sovelluksen kuvaus
