@@ -9,6 +9,22 @@ body {
     margin-bottom: 60px;
 }
 
+/*BAR LISTING */
+
+.bars {
+    white-space: pre-wrap;
+}
+
+/*ADD BAR */
+
+input {
+    margin: 5px;
+}
+
+
+
+/*FOOTER */
+
 .footer {
     position: absolute;
     bottom: 0;

@@ -11,25 +11,37 @@
 
 <div class="container">
     <h1>Add a bar: </h1>
-
     <form class="form-group">
 
-        <div class="input-group">
-            <input class="form-control" type="number" placeholder="Price of beer"/>
-            <span class="input-group-addon">€</span>
-
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" class="form-control" placeholder="Name of bar"/>
         </div>
-        <div class="input-group">
-            <input class="form-control" type="number" placeholder="5"/>
-            <span class="input-group-addon">dl</span>
+    </div>
 
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" class="form-control" placeholder="Address of bar"/>
         </div>
-        <button type="submit" class="btn btn-primary">Submit bar!</button>
-    </form>
+    </div>
+
+
+<div class="row">
+    <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Name of Cheapest beer?"/>
+    </div>
+    <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Volume (5dl)"/>
+    </div>
+    <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Price (5.5€)"/>
+    </div>
+</div>
+<button type="submit" class="btn btn-primary">Submit bar!</button>
+</form>
 </div>
 
 <footer class="footer" th:include="fragment :: footer"></footer>
-
 
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" th:if="false"></script>

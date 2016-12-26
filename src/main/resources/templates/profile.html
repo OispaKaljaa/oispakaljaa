@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head th:include="fragment :: head"></head>
+<body>
+
+<div class="container" th:include="fragment :: header"></div>
+
+<h2>Profile:  <span sec:authentication="username">Username</span></h2>
+
+
+<footer class="footer" th:include="fragment :: footer"></footer>
+
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/barRest.js"></script>
+
+</body>
+</html>
