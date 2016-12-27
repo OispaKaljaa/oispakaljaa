@@ -1,4 +1,3 @@
-
 package fi.oispakaljaa.karhu.auth;
 
 import fi.oispakaljaa.karhu.domain.Account;
@@ -14,7 +13,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
-
 
 @Component
 public class JpaAuthenticationProvider implements AuthenticationProvider {
@@ -40,6 +38,9 @@ public class JpaAuthenticationProvider implements AuthenticationProvider {
         }
 
         List<GrantedAuthority> grantedAuths = new ArrayList<>();
+        if (account.isAdmin()) {
+            grantedAuths.add(new SimpleGrantedAuthority("ADMIN"));
+        }
         grantedAuths.add(new SimpleGrantedAuthority("USER"));
 
         return new UsernamePasswordAuthenticationToken(account.getUsername(), password, grantedAuths);

@@ -14,9 +14,14 @@ public class Account extends AbstractPersistable<Long> {
     private String username;
     private String password;
     private String salt;
+    private boolean admin;
 
     @ManyToMany
     private List<Bar> favouriteBars;
+
+    public Account() {
+        this.admin = false;
+    }
 
     public String getUsername() {
         return username;
@@ -24,6 +29,14 @@ public class Account extends AbstractPersistable<Long> {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     public String getPassword() {
@@ -37,7 +50,5 @@ public class Account extends AbstractPersistable<Long> {
     public String getSalt() {
         return salt;
     }
-
-
 
 }
