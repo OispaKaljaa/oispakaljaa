@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
 <head th:fragment="head">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -26,8 +28,8 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-log-in"></i></a></li>
+                <li sec:authorize="hasAnyRole()"><a th:href="@{/profile}"><i class="glyphicon glyphicon-user"></i></a></li>
+                <li sec:authorize="hasRole('none')"><a th:href="@{/signin}"><i class="glyphicon glyphicon-log-in"></i></a></li>
             </ul>
 
         </div>

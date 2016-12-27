@@ -15,4 +15,19 @@ public class DefaultController {
         return "addbar";
     }
 
+    @RequestMapping("/profile")
+    public String profilePage() {
+        return "profile";
+    }
+
+    @RequestMapping("/signin")
+    public String signin() {
+        return "signin";
+    }
+
+    @RequestMapping("/signup")
+    public String signup() {
+        return "signup";
+    }
+
 }
