@@ -5,13 +5,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.List;
+import javax.persistence.Column;
 
 @Entity
 public class Account extends AbstractPersistable<Long> {
 
+    @Column(unique = true)
     private String username;
     private String password;
-    private String authority;
+    private String salt;
 
     @ManyToMany
     private List<Bar> favouriteBars;
@@ -32,12 +34,10 @@ public class Account extends AbstractPersistable<Long> {
         this.password = password;
     }
 
-    public String getAuthority() {
-        return authority;
+    public String getSalt() {
+        return salt;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
+
 
 }
