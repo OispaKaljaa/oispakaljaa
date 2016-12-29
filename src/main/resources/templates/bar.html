@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragment :: head"></head>
+
+<body>
+    <div class="container" th:include="fragment :: header"></div>
+    <div id="barBody" class="container">
+    </div>
+    <footer class="footer" th:include="fragment :: footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/script.js"></script>
+    <script type="text/javascript">
+        $(document).ready(() => {
+            let pathvars = window.location.pathname.split('/');
+            getBar(pathvars[pathvars.length - 1]);
+        });
+    </script>
+</body>
+
+</html>

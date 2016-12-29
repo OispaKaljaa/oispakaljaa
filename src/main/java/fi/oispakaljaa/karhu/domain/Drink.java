@@ -94,6 +94,6 @@ public class Drink extends AbstractPersistable<Long> {
     }
 
     public double getIntoxFactor() {
-        return (price / 100.d) /((alcoholPercentage / 10000.d) * (volume / 10.d));
+        return ((alcoholPercentage / 10000.d) * (volume / 10.d)) + (1.d / price);
     }
 }

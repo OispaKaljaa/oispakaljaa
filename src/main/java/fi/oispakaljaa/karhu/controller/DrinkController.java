@@ -39,7 +39,7 @@ public class DrinkController {
 
         Drink d = new Drink();
         d.setDrinkType("beer");
-        d.setPrice(650);
+        d.setPrice(550);
         d.setAlcoholPercentage(456);
         d.setVolume(5);
         d.setBar(b1);
@@ -47,9 +47,9 @@ public class DrinkController {
 
         d = new Drink();
         d.setDrinkType("beer");
-        d.setPrice(100);
+        d.setPrice(900);
         d.setAlcoholPercentage(550);
-        d.setVolume(7);
+        d.setVolume(4);
         d.setBar(b2);
         drinkRepository.save(d);
 

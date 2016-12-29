@@ -40,14 +40,15 @@ public class QueryService {
                 Integer aDist = ((Integer) a.get("distance"));
                 Integer bDist = ((Integer) b.get("distance"));
 
-                // Since we only support on drink currently, we'll do this.
+                // Since we only support one drink currently, we'll do this.
                 Drink aDrink = drinkRepository.findByBar(((Bar) a.get("bar"))).get(0);
                 Drink bDrink = drinkRepository.findByBar(((Bar) a.get("bar"))).get(0);
 
                 if (aDrink == null || bDrink == null)
                     return 0;
-                Double aWeight = aDrink.getIntoxFactor() + (aDist / 1000.d);
-                Double bWeight = bDrink.getIntoxFactor() + (bDist / 1000.d);
+
+                Double aWeight = aDrink.getIntoxFactor() + (1.d / (aDist / 1000.d));
+                Double bWeight = bDrink.getIntoxFactor() + (1.d / (bDist / 1000.d));
 
                 return -aWeight.compareTo(bWeight);
             })

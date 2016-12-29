@@ -30,4 +30,9 @@ public class DefaultController {
         return "signup";
     }
 
+    @RequestMapping("/bars/{id}")
+    public String bar() {
+        return "bar";
+    }
+
 }
