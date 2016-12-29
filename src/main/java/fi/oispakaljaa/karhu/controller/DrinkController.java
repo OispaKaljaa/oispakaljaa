@@ -25,6 +25,36 @@ public class DrinkController {
     @Autowired
     BarRepository barRepository;
 
+    @Autowired
+    public void setUp() {
+        Bar b1 = new Bar();
+        b1.setName("willi wäinö");
+        b1.setAddress("kalevankatu+4+Helsinki");
+        barRepository.save(b1);
+
+        Bar b2 = new Bar();
+        b2.setName("swengi");
+        b2.setAddress("Iso+Roobertinkatu+10+Helsinki");
+        barRepository.save(b2);
+
+        Drink d = new Drink();
+        d.setDrinkType("beer");
+        d.setPrice(650);
+        d.setAlcoholPercentage(456);
+        d.setVolume(5);
+        d.setBar(b1);
+        drinkRepository.save(d);
+
+        d = new Drink();
+        d.setDrinkType("beer");
+        d.setPrice(100);
+        d.setAlcoholPercentage(550);
+        d.setVolume(7);
+        d.setBar(b2);
+        drinkRepository.save(d);
+
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<OispakaljaaTemplate> listDrinksByBar(@PathVariable(value = "barId") Long id) {
         Bar b = barRepository.findOne(id);

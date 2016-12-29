@@ -85,7 +85,15 @@ public class Drink extends AbstractPersistable<Long> {
         this.volume = volume;
     }
 
+    public Integer getAlcoholPercentage() {
+        return alcoholPercentage;
+    }
+
+    public void setAlcoholPercentage(Integer alcoholPercentage) {
+        this.alcoholPercentage = alcoholPercentage;
+    }
+
     public double getIntoxFactor() {
-        return ((double) alcoholPercentage * (double) volume * 0.1) / ((double) price * 100);
+        return (price / 100.d) /((alcoholPercentage / 10000.d) * (volume / 10.d));
     }
 }

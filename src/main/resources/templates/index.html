@@ -4,41 +4,18 @@
 <body>
 
 <div class="container" th:include="fragment :: header"></div>
-
-
 <div class="container">
     <h1>Best bars:</h1>
-
-    <div class="btn-group">
-        <button id="buttonText" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            Sort by <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li id="distance"><a href="#">Distance</a></li>
-            <li id="price"><a href="#">Price</a></li>
-            <li id="best"><a href="#">Best</a></li>
-        </ul>
-    </div>
-
-
     <table class="table table-condensed table-hover" style="border-collapse:collapse;">
         <thead>
         <tr>
             <th>Bar</th>
             <th>Distance</th>
-            <th>l/€</th>
         </tr>
         </thead>
         <tbody id="bars">
-        <tr data-toggle="collapse" data-target="#demo1">
-            <td>Breezer</td>
-            <td>1km</td>
-            <td>45</td>
-        </tr>
         <tr>
             <td colspan="3" class="hiddenRow">
-                <div id="demo1" class="collapse">Hämeentie 666, Helsinki <br/>Times favourited: 5</div>
             </td>
         </tr>
 
@@ -53,7 +30,7 @@
 
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/barRest.js"></script>
+<script src="js/script.js"></script>
 
 </body>
 </html>

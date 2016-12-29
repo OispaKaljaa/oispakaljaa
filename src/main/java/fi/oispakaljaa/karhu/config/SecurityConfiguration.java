@@ -21,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/public*").permitAll()
                 .antMatchers("/templates*").permitAll()
-                .antMatchers(HttpMethod.POST, "/bars").authenticated();
+                .antMatchers(HttpMethod.POST, "/api/bars").permitAll();
 
         http.formLogin()
                 .loginPage("/login")

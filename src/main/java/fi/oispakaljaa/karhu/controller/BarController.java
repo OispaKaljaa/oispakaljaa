@@ -4,6 +4,8 @@ import fi.oispakaljaa.karhu.APItemplates.google.OispakaljaaTemplate;
 import fi.oispakaljaa.karhu.domain.Bar;
 import fi.oispakaljaa.karhu.repository.BarRepository;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/api/bars")
 public class BarController {
-
     @Autowired
     BarRepository barRepository;
 

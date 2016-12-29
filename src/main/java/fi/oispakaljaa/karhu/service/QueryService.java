@@ -1,13 +1,17 @@
 package fi.oispakaljaa.karhu.service;
 
+import fi.oispakaljaa.karhu.APItemplates.google.Element;
 import fi.oispakaljaa.karhu.domain.Bar;
+import fi.oispakaljaa.karhu.domain.Drink;
 import fi.oispakaljaa.karhu.repository.BarRepository;
 import fi.oispakaljaa.karhu.repository.DrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -25,14 +29,29 @@ public class QueryService {
     @Autowired
     GoogleAPIService googleAPIService;
 
-      public List<Bar> recommendBars() {
+      public List<Map<Object, Object>> recommendBars(String position) {
         List<Bar> bars = barRepository.findAll();
-        googleAPIService.getDistance("60.171080599999996,24.949038599999998", "Kamppi.Helsinki");
-        return drinkRepository.findAll()
-                .stream()
-                .filter(d -> d.getDrinkType().equals("Beer"))
-                .map(d -> d.getBar())
-                .collect(Collectors.toList());
+        List<Map<Object, Object>> elements = googleAPIService.assignDistanceToBars(position, bars);
+        if (elements == null)
+            return null;
 
+        return elements.stream()
+            .sorted((a, b) -> {
+                Integer aDist = ((Integer) a.get("distance"));
+                Integer bDist = ((Integer) b.get("distance"));
+
+                // Since we only support on drink currently, we'll do this.
+                Drink aDrink = drinkRepository.findByBar(((Bar) a.get("bar"))).get(0);
+                Drink bDrink = drinkRepository.findByBar(((Bar) a.get("bar"))).get(0);
+
+                if (aDrink == null || bDrink == null)
+                    return 0;
+                Double aWeight = aDrink.getIntoxFactor() + (aDist / 1000.d);
+                Double bWeight = bDrink.getIntoxFactor() + (bDist / 1000.d);
+
+                return -aWeight.compareTo(bWeight);
+            })
+            .limit(5)
+            .collect(Collectors.toList());
     }
 }
