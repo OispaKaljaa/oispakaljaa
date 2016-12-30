@@ -66,4 +66,4 @@ Path | Verb | Description
 `/bars/` | POST | Creates a new bar.
 `/bars/:barId` | GET | Gets a specific bar.
 `/bars/:barId/drinks/` | GET | Gets drinks of a bar.
-`/boards/:barId/drinks/` | POST | Creates a new drink on the specified bar.
+`/bars/:barId/drinks/` | POST | Creates a new drink on the specified bar.
