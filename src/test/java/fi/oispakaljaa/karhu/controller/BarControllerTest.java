@@ -3,30 +3,27 @@ package fi.oispakaljaa.karhu.controller;
 import fi.oispakaljaa.karhu.repository.AccountRepository;
 import fi.oispakaljaa.karhu.repository.BarRepository;
 import fi.oispakaljaa.karhu.repository.DrinkRepository;
+import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
-
-/**
- * Created by julkku on 12/18/16.
- */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BarControllerTest {
-
 
     @Autowired
     private AccountRepository accountRepository;
@@ -41,7 +38,6 @@ public class BarControllerTest {
     private WebApplicationContext webAppContext;
     @Autowired
     private ListableBeanFactory listableBeanFactory;
-
 
     private MockMvc mockMvc;
 
@@ -58,23 +54,17 @@ public class BarControllerTest {
 
     }
 
-//    @Test
-//    public void list() throws Exception {
-//    }
-//
-//    @Test
-//    public void getBar() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void postBar() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void deleteBar() throws Exception {
-//
-//    }
+    @Test
+    public void testPostBar() throws Exception {
+        String name = UUID.randomUUID().toString().substring(0, 6);
+        String address = UUID.randomUUID().toString().substring(0, 6);
+
+        mockMvc.perform(post("/api/bars/").contentType(MediaType.APPLICATION_JSON).content("{\"name\":\"" + name + "\",\n\"address\":\"" + address + "\"}"))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get("/api/bars"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"));
+    }
 
 }
