@@ -58,7 +58,7 @@ Key | Description
  }
 ```
 
-# Endpoints
+### Endpoints
 
 Path | Verb | Description
 -----|------|------------
