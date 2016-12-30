@@ -19,7 +19,8 @@ public class Account extends AbstractPersistable<Long> {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String salt; // we don't want any plaintext password or salts in our response json.
     private boolean admin;
-    @ManyToMany
+    @ManyToMany(mappedBy = "favourites")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private List<Bar> favouriteBars;
 
     public Account() {
@@ -55,4 +56,7 @@ public class Account extends AbstractPersistable<Long> {
         return salt;
     }
 
+    public List<Bar> getFavouriteBars() {
+        return favouriteBars;
+    }
 }

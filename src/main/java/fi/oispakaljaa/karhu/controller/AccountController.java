@@ -43,5 +43,4 @@ public class AccountController {
         } else
             return new ResponseEntity(new OispakaljaaTemplate("Error", "Unauthorized", null), HttpStatus.UNAUTHORIZED );
     }
-
 }

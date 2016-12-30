@@ -7,7 +7,12 @@
 <body>
     <div class="container" th:include="fragment :: header"></div>
     <div id="barBody" class="container">
+        <div id="barStats"></div>
+        <button onclick="onFavourite()" type="button" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Favourite
+        </button>
     </div>
+
     <footer class="footer" th:include="fragment :: footer"></footer>
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
@@ -18,6 +23,7 @@
     <script type="text/javascript">
         $(document).ready(() => {
             let pathvars = window.location.pathname.split('/');
+            // A pretty hacky solution.
             getBar(pathvars[pathvars.length - 1]);
         });
     </script>

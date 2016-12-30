@@ -5,6 +5,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,6 @@ import java.util.List;
  */
 @Entity
 public class Bar extends AbstractPersistable<Long> {
-
     private String name;
     private String address;
     @ManyToMany
@@ -38,6 +38,8 @@ public class Bar extends AbstractPersistable<Long> {
     }
 
     public List<Account> getFavourites() {
+        if (favourites == null)
+            favourites = new ArrayList<>();
         return favourites;
     }
 
