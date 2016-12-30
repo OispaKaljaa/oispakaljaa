@@ -4,4 +4,5 @@ In progress aggregator for finding cheapest beers and bars by location.
 
 ### Docs
 
-[API](docs/API,md)
+[API](docs/API.md)
+[Usage cases](docs/usageCases.md)
