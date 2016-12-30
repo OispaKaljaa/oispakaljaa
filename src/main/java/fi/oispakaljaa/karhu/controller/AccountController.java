@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @RestController
 @RequestMapping(value = "/api/me")
 public class AccountController {
@@ -22,9 +25,9 @@ public class AccountController {
     private AccountRepository accountRepository;
 
     @RequestMapping(method = RequestMethod.POST)
-    public Account create(@ModelAttribute Account account) {
+    public void create(@ModelAttribute Account account, HttpServletResponse res) throws IOException {
         accountRepository.save(account);
-        return accountRepository.save(account);
+        res.sendRedirect("/signin");
     }
 
     @RequestMapping(method = RequestMethod.GET)

@@ -22,8 +22,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/public*").permitAll()
                 .antMatchers("/templates*").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/bars")
-                .hasAnyRole("USER", "ADMIN");
+                .permitAll();
         http.csrf().disable();
+        http.formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/authenticate")
+                .defaultSuccessUrl("/index")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .permitAll();
         http.logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")

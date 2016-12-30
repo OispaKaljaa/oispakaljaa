@@ -46,6 +46,9 @@ public class Bar extends AbstractPersistable<Long> {
     }
 
     public int getnFavourites() {
-        return favourites.size();
+        if (favourites != null)
+            return favourites.size();
+        else
+            return 0;
     }
 }

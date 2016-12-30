@@ -67,24 +67,39 @@ function onFormSubmit(e) {
 
   let drink = {
     name: e.form.cheapestBeerName.value,
-    price: Number(e.form.cheapesBeerPrice.value),
+    price: Number(e.form.cheapesBeerPrice.value.replace('.','')) * 100,
     volume: Number(e.form.cheapestBeerVolume.value),
     drinkType: 'beer',
-    alcoholPercentage: Number(e.form.cheapestBeerAlcohol.value)
+    alcoholPercentage: Number(e.form.cheapestBeerAlcohol.value.replace('.','')) * 100
   };
 
   // Send request to server
-  $.ajax({
-    xhrFields: { // This is probably not safe in any way...
-      withCredentials: true
-    },
-    type: 'POST',
-    url: APICall.bars,
-    data: JSON.stringify({ bar: bar, drink: drink }),
-    success: e => {
-      console.log(e);
-    }
+  fetch(APICall.bars, {
+    credentials: 'include',
+    method: 'POST',
+    body: JSON.stringify({ bar: bar, drink: drink }),
+  }).then(response => {
+    console.log(response);
+  }).catch(e => {
+    console.log(e);
   });
+}
+
+function getMe() {
+  fetch(APICall.me, {credentials: 'include'}).then(res => res.json())
+  .then(data => {
+    if (data.status === 'Error') {
+      console.log('Error getting profile: ' + data.message);
+      window.document.location = '/signin';
+    }
+
+    let me = data.data;
+    let div = $('<div/>');
+    $('<h2/>').text(me.username).appendTo(div);
+    div.appendTo('#profileContainer');
+  }).catch(e => {
+      window.document.location = '/signin'; 
+  })
 }
 
 $(function () {

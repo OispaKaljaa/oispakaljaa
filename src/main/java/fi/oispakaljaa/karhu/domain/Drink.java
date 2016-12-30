@@ -1,6 +1,7 @@
 package fi.oispakaljaa.karhu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -8,24 +9,18 @@ import java.util.Date;
 
 @Entity
 public class Drink extends AbstractPersistable<Long> {
-
     private String name;
-
     private String drinkType;
-
     private Integer price;
-
     private Integer volume; //dl
-
     private Integer alcoholPercentage; // 4,56 -> 456
-
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private double intoxFactor;
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     private Bar bar;
-
     @Temporal(TemporalType.DATE)
     private Date added;
-
     @Temporal(TemporalType.DATE)
     private Date lastEdit;
 
