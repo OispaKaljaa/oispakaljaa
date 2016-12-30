@@ -1,6 +1,8 @@
 package fi.oispakaljaa.karhu.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -12,10 +14,11 @@ public class Account extends AbstractPersistable<Long> {
 
     @Column(unique = true)
     private String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private String salt;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String salt; // we don't want any plaintext password or salts in our response json.
     private boolean admin;
-
     @ManyToMany
     private List<Bar> favouriteBars;
 
@@ -44,7 +47,8 @@ public class Account extends AbstractPersistable<Long> {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.salt = BCrypt.gensalt();
+        this.password = BCrypt.hashpw(password, this.salt);
     }
 
     public String getSalt() {

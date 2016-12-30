@@ -1,5 +1,6 @@
 package fi.oispakaljaa.karhu.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
@@ -13,11 +14,12 @@ import java.util.List;
 public class Bar extends AbstractPersistable<Long> {
 
     private String name;
-
     private String address;
-
     @ManyToMany
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Account> favourites;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private int nFavourites;
 
     public String getName() {
         return name;
@@ -41,5 +43,9 @@ public class Bar extends AbstractPersistable<Long> {
 
     public void setFavourites(List<Account> favourites) {
         this.favourites = favourites;
+    }
+
+    public int getnFavourites() {
+        return favourites.size();
     }
 }
