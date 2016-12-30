@@ -21,19 +21,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/public*").permitAll()
                 .antMatchers("/templates*").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/bars").permitAll();
-
-        http.formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/authenticate")
-                .defaultSuccessUrl("/index")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .permitAll();
-
+                .antMatchers(HttpMethod.POST, "/api/bars")
+                .hasAnyRole("USER", "ADMIN");
+        http.csrf().disable();
         http.logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/")
                 .permitAll()
                 .invalidateHttpSession(true);
     }
