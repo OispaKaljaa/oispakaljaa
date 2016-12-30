@@ -6,6 +6,7 @@ import fi.oispakaljaa.karhu.domain.Drink;
 import fi.oispakaljaa.karhu.repository.BarRepository;
 import fi.oispakaljaa.karhu.repository.DrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -29,7 +30,9 @@ public class QueryService {
     @Autowired
     GoogleAPIService googleAPIService;
 
-      public List<Map<Object, Object>> recommendBars(String position) {
+    // Make method async since the API call and processing still takes some time.
+    @Async
+    public List<Map<Object, Object>> recommendBars(String position) {
         List<Bar> bars = barRepository.findAll();
         List<Map<Object, Object>> elements = googleAPIService.assignDistanceToBars(position, bars);
         if (elements == null)

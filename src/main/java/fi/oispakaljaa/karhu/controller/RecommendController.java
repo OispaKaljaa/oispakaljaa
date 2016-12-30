@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.Callable;
+
 @RestController
 @RequestMapping("/api")
 public class RecommendController {
@@ -16,8 +18,8 @@ public class RecommendController {
     QueryService queryService;
 
     @RequestMapping(value = "recommend/", method = RequestMethod.GET)
-    public ResponseEntity<OispakaljaaTemplate> listAllDrinksByPrice(@RequestParam String pos) {
-        return new ResponseEntity<>(new OispakaljaaTemplate("OK", "", queryService.recommendBars(pos)), HttpStatus.OK);
+    public Callable<ResponseEntity<OispakaljaaTemplate>> listAllDrinksByPrice(@RequestParam String pos) {
+        return () -> new ResponseEntity<>(new OispakaljaaTemplate("OK", "", queryService.recommendBars(pos)), HttpStatus.OK);
     }
 
 }

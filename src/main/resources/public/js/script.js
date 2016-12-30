@@ -59,6 +59,34 @@ function getBar(id) {
   });
 }
 
+function onFormSubmit(e) {
+  let bar = {
+    name: e.form.barName.value,
+    address: e.form.barAddress.value.replace(',', ' ')
+  };
+
+  let drink = {
+    name: e.form.cheapestBeerName.value,
+    price: Number(e.form.cheapesBeerPrice.value),
+    volume: Number(e.form.cheapestBeerVolume.value),
+    drinkType: 'beer',
+    alcoholPercentage: Number(e.form.cheapestBeerAlcohol.value)
+  };
+
+  // Send request to server
+  $.ajax({
+    xhrFields: { // This is probably not safe in any way...
+      withCredentials: true
+    },
+    type: 'POST',
+    url: APICall.bars,
+    data: JSON.stringify({ bar: bar, drink: drink }),
+    success: e => {
+      console.log(e);
+    }
+  });
+}
+
 $(function () {
   $('li').on('click', function () {
     $('#buttonText').text($('#' + this.id).text());

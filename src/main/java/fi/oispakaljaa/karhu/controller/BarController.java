@@ -37,7 +37,7 @@ public class BarController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<OispakaljaaTemplate> postBar(@RequestBody Bar bar) {
-        return new ResponseEntity<OispakaljaaTemplate>(new OispakaljaaTemplate("OK", "", barRepository.save(bar)), HttpStatus.OK);
+        return new ResponseEntity<>(new OispakaljaaTemplate("OK", "", barRepository.save(bar)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{barId}", method = RequestMethod.DELETE)
@@ -47,7 +47,7 @@ public class BarController {
             return new ResponseEntity<>(new OispakaljaaTemplate("Error", "Bar not found", null), HttpStatus.NOT_FOUND);
 
         barRepository.delete(bar);
-        return new ResponseEntity<OispakaljaaTemplate>(new OispakaljaaTemplate("OK", "", bar), HttpStatus.OK);
+        return new ResponseEntity<>(new OispakaljaaTemplate("OK", "", bar), HttpStatus.OK);
 
         // se täytyis varmistaa, että jos baari poistetaan niin myös kaikki kyseisen baarin juomat poistetaan
     }
