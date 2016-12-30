@@ -1,4 +1,4 @@
-package fi.oispakaljaa.karhu.APItemplates.google;
+package fi.oispakaljaa.karhu.APItemplates;
 
 /**
  * Created by hugoh on 11/12/2016.

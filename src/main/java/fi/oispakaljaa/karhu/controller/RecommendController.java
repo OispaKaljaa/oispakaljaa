@@ -1,6 +1,6 @@
 package fi.oispakaljaa.karhu.controller;
 
-import fi.oispakaljaa.karhu.APItemplates.google.OispakaljaaTemplate;
+import fi.oispakaljaa.karhu.APItemplates.OispakaljaaTemplate;
 import fi.oispakaljaa.karhu.repository.DrinkRepository;
 import fi.oispakaljaa.karhu.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;

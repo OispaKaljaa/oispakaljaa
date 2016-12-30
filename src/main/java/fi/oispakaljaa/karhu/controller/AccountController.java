@@ -1,6 +1,6 @@
 package fi.oispakaljaa.karhu.controller;
 
-import fi.oispakaljaa.karhu.APItemplates.google.OispakaljaaTemplate;
+import fi.oispakaljaa.karhu.APItemplates.OispakaljaaTemplate;
 import fi.oispakaljaa.karhu.domain.Account;
 import fi.oispakaljaa.karhu.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;

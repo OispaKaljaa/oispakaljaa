@@ -24,7 +24,7 @@ public class GoogleAPIService {
     }
 
     private String getUrl(String a, String b) {
-        return "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + a +"&destinations=" + b + ".Helsinki&key=AIzaSyDSbvTAIB6YD0hE26dIbzvBhM7-tRpapGI";
+        return "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + a +"&destinations=" + b + ".Helsinki&key=" + System.getenv("GOOGL_API_KEY");
     }
 
     public List<Map<Object, Object>> assignDistanceToBars(String a, List<Bar> bars) {

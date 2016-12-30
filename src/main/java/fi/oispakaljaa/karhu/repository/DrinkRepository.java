@@ -8,11 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface DrinkRepository extends JpaRepository<Drink, Long> {
-
     List<Drink> findByBar(Bar bar);
-
     Drink findByBarAndId(Bar bar, Long Id);
-
-    @Query("SELECT d FROM Drink d")
-    List<Drink> orderByPrice(Sort sort);
 }

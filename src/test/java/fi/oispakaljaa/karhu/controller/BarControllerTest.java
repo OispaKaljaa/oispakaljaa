@@ -1,5 +1,6 @@
 package fi.oispakaljaa.karhu.controller;
 
+import fi.oispakaljaa.karhu.domain.Account;
 import fi.oispakaljaa.karhu.repository.AccountRepository;
 import fi.oispakaljaa.karhu.repository.BarRepository;
 import fi.oispakaljaa.karhu.repository.DrinkRepository;
@@ -54,17 +55,19 @@ public class BarControllerTest {
 
     }
 
+    // Test that authorization is needed for posting.
     @Test
     public void testPostBar() throws Exception {
         String name = UUID.randomUUID().toString().substring(0, 6);
         String address = UUID.randomUUID().toString().substring(0, 6);
 
         mockMvc.perform(post("/api/bars/").contentType(MediaType.APPLICATION_JSON).content("{\"bar\": {\"name\":\"" + name + "\",\"address\":\"" + address + "\"}, \"drink\": {\"name\":\"" + name + "\"}}"))
-                .andExpect(status().isOk());
+                .andExpect(status().isUnauthorized());
 
         mockMvc.perform(get("/api/bars"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"));
     }
+
 
 }

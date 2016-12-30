@@ -22,10 +22,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/public*").permitAll()
                 .antMatchers("/templates*").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/bars")
-                .permitAll();
+                .hasAnyAuthority("USER", "ADMIN");
         http.csrf().disable();
         http.formLogin()
-                .loginPage("/login")
+                .loginPage("/signin")
                 .loginProcessingUrl("/authenticate")
                 .defaultSuccessUrl("/index")
                 .usernameParameter("username")
