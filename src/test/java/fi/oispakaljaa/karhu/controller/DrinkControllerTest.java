@@ -45,23 +45,6 @@ public class DrinkControllerTest {
     public void setUp() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
 
-        String name = UUID.randomUUID().toString().substring(0, 6);
-        String address = UUID.randomUUID().toString().substring(0, 6);
-
-        mockMvc.perform(post("/api/bars/").contentType(MediaType.APPLICATION_JSON).content("{\"name\":\"" + name + "\",\n\"address\":\"" + address + "\"}"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void apiWorks() throws Exception {
-        mockMvc.perform(get("/api/bars/1/drinks"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"));
-
-    }
-
-    @Test
-    public void postDrink() throws Exception {
         String drinkName = UUID.randomUUID().toString().substring(0, 6);
         Random random = new Random();
         Integer price = random.nextInt(5);
@@ -71,10 +54,14 @@ public class DrinkControllerTest {
         mockMvc.perform(post("/api/bars/1/drinks").contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\":\"" + drinkName + "\",\n\"drinkType\":\"beer\",\n\"price\":\"" + price + "\",\n\"volume\":\"" + volume + "\",\n\"alcoholPercentage\":\"" + alcoholPercentage + "\"}"))
                 .andExpect(status().isOk());
+    }
 
+    @Test
+    public void apiWorks() throws Exception {
         mockMvc.perform(get("/api/bars/1/drinks"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"));
+
     }
 
 }

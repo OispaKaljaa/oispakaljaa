@@ -59,7 +59,7 @@ public class BarControllerTest {
         String name = UUID.randomUUID().toString().substring(0, 6);
         String address = UUID.randomUUID().toString().substring(0, 6);
 
-        mockMvc.perform(post("/api/bars/").contentType(MediaType.APPLICATION_JSON).content("{\"name\":\"" + name + "\",\n\"address\":\"" + address + "\"}"))
+        mockMvc.perform(post("/api/bars/").contentType(MediaType.APPLICATION_JSON).content("{\"bar\": {\"name\":\"" + name + "\",\"address\":\"" + address + "\"}, \"drink\": {\"name\":\"" + name + "\"}}"))
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/api/bars"))
