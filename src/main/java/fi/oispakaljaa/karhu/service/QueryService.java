@@ -53,7 +53,7 @@ public class QueryService {
                 Double aWeight = aDrink.getIntoxFactor() + (1.d / (aDist / 1000.d));
                 Double bWeight = bDrink.getIntoxFactor() + (1.d / (bDist / 1000.d));
 
-                return -aWeight.compareTo(bWeight);
+                return aWeight.compareTo(bWeight);
             })
             .limit(5)
             .collect(Collectors.toList());

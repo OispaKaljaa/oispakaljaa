@@ -68,7 +68,7 @@ function onFormSubmit(e) {
 
   let drink = {
     name: e.form.cheapestBeerName.value,
-    price: Number(e.form.cheapesBeerPrice.value.replace('.', '')) * 100,
+    price: Number(e.form.cheapesBeerPrice.value) * 100,
     volume: Number(e.form.cheapestBeerVolume.value),
     drinkType: 'beer',
     alcoholPercentage: Number(e.form.cheapestBeerAlcohol.value.replace('.', '')) * 100
