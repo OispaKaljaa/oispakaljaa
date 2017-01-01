@@ -33,12 +33,14 @@ public class GoogleAPIService {
             a, String.join("|", Arrays.copyOf(addresses, addresses.length, String[].class))),
             GoogleDistanceMatrixTemplate.class);
 
-        if (res.rows[0].elements.length != bars.size())
+        if (res == null || res.rows[0].elements.length != bars.size())
             return null;
         List<Map<Object, Object>> resList = new ArrayList<>();
 
         // A very bad way of doing this
         for (int i = 0; i < res.rows[0].elements.length; ++i) {
+            if (res.rows[0].elements[i].distance == null)
+                continue;
             Map<Object, Object> jsonObject = new HashMap<>();
             jsonObject.put("distance", res.rows[0].elements[i].distance.value);
             jsonObject.put("bar", bars.get(i));

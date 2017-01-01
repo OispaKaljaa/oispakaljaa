@@ -97,13 +97,15 @@ function getMe() {
       let me = data.data;
       let div = $('#profileHeader');
       $('<h1/>').text('Hello, ' + me.username).appendTo(div);
-      let listItem = $('<tr/>');
       me.favouriteBars.forEach(bar => {
+        let listItem = $('<tr/>');
+        listItem.attr('onclick', 'barItemClicked(this);');
+        listItem.attr('id', bar.id);
         $('<td/>').text(bar.name).appendTo(listItem);
         $('<td/>').text(bar.address).appendTo(listItem);
         $('<td/>').text(bar.nFavourites).appendTo(listItem);
+        listItem.appendTo('#bars');
       });
-      listItem.appendTo('#bars');
     }).catch(e => {
       window.document.location = '/signin';
     })
@@ -118,9 +120,7 @@ function onFavourite() {
     method: 'PUT',
   }).then(response => {
     if (response.status === 401) window.document.location = '/signin';
-    response.json();
-  }).then(data => {
-    if (data.status === "OK") location.reload();
+    if (response.status === 200) window.location.reload();
   }).catch(e => {
     console.log(e);
   });

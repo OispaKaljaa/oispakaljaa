@@ -45,7 +45,7 @@ public class QueryService {
 
                 // Since we only support one drink currently, we'll do this.
                 Drink aDrink = drinkRepository.findByBar(((Bar) a.get("bar"))).get(0);
-                Drink bDrink = drinkRepository.findByBar(((Bar) a.get("bar"))).get(0);
+                Drink bDrink = drinkRepository.findByBar(((Bar) b.get("bar"))).get(0);
 
                 if (aDrink == null || bDrink == null)
                     return 0;
@@ -53,7 +53,7 @@ public class QueryService {
                 Double aWeight = aDrink.getIntoxFactor() + (1.d / (aDist / 1000.d));
                 Double bWeight = bDrink.getIntoxFactor() + (1.d / (bDist / 1000.d));
 
-                return aWeight.compareTo(bWeight);
+                return -aWeight.compareTo(bWeight);
             })
             .limit(5)
             .collect(Collectors.toList());
